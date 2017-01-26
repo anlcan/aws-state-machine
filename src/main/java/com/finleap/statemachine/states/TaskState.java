@@ -1,8 +1,8 @@
-package com.finleap.sm.states;
+package com.finleap.statemachine.states;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.finleap.runtime.StateExecutor;
-import com.finleap.sm.StateMachineContext;
+import com.finleap.statemachine.StateMachineContext;
 
 /**
  * Created by anlcan on 20/01/2017.

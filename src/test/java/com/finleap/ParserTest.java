@@ -1,6 +1,6 @@
 package com.finleap;
 
-import com.finleap.sm.StateMachine;
+import com.finleap.statemachine.StateMachine;
 import org.junit.Test;
 
 import java.io.File;

@@ -1,4 +1,4 @@
-package com.finleap.sm;
+package com.finleap.statemachine;
 
 import java.util.HashMap;
 import java.util.Map;

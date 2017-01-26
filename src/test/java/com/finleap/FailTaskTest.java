@@ -1,8 +1,8 @@
 package com.finleap;
 
-import com.finleap.sm.InterpreterContext;
-import com.finleap.sm.StateMachineError;
-import com.finleap.sm.states.FailState;
+import com.finleap.statemachine.InterpreterContext;
+import com.finleap.statemachine.error.StateMachineError;
+import com.finleap.statemachine.states.FailState;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;

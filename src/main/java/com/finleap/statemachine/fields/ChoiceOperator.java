@@ -1,6 +1,6 @@
-package com.finleap.sm.fields;
+package com.finleap.statemachine.fields;
 
-import com.finleap.sm.StateMachineContext;
+import com.finleap.statemachine.StateMachineContext;
 
 import java.math.BigDecimal;
 import java.util.Objects;

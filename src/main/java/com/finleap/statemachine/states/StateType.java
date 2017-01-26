@@ -1,4 +1,4 @@
-package com.finleap.sm.states;
+package com.finleap.statemachine.states;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

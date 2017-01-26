@@ -6,8 +6,8 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.finleap.sm.fields.ChoiceOperator;
-import com.finleap.sm.fields.ChoiceRule;
+import com.finleap.statemachine.fields.ChoiceOperator;
+import com.finleap.statemachine.fields.ChoiceRule;
 
 import java.io.IOException;
 import java.util.Arrays;

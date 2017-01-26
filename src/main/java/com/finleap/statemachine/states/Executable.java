@@ -1,7 +1,7 @@
-package com.finleap.sm.states;
+package com.finleap.statemachine.states;
 
 import com.finleap.runtime.StateExecutor;
-import com.finleap.sm.StateMachineContext;
+import com.finleap.statemachine.StateMachineContext;
 
 
 /**

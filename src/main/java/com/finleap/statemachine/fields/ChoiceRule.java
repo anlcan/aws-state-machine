@@ -1,9 +1,9 @@
-package com.finleap.sm.fields;
+package com.finleap.statemachine.fields;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.finleap.deser.ChoiceDeserializer;
-import com.finleap.sm.StateMachineContext;
+import com.finleap.statemachine.StateMachineContext;
 import com.jayway.jsonpath.JsonPath;
 
 /**

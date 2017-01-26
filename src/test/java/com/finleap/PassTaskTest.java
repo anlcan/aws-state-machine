@@ -1,7 +1,7 @@
 package com.finleap;
 
-import com.finleap.sm.InterpreterContext;
-import com.finleap.sm.states.PassState;
+import com.finleap.statemachine.InterpreterContext;
+import com.finleap.statemachine.states.PassState;
 import org.junit.Before;
 import org.junit.Test;
 

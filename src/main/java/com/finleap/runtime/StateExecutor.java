@@ -1,7 +1,7 @@
 package com.finleap.runtime;
 
-import com.finleap.sm.StateMachineContext;
-import com.finleap.sm.states.State;
+import com.finleap.statemachine.StateMachineContext;
+import com.finleap.statemachine.states.State;
 
 /**
  * Created by anlcan on 26/01/2017.

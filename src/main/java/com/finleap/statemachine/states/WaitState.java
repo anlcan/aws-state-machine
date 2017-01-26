@@ -1,8 +1,8 @@
-package com.finleap.sm.states;
+package com.finleap.statemachine.states;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.finleap.sm.StateExecutionException;
-import com.finleap.sm.StateMachineContext;
+import com.finleap.statemachine.error.StateExecutionException;
+import com.finleap.statemachine.StateMachineContext;
 import com.jayway.jsonpath.JsonPath;
 
 import java.time.Duration;

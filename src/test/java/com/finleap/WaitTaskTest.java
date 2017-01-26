@@ -1,7 +1,7 @@
 package com.finleap;
 
-import com.finleap.sm.InterpreterContext;
-import com.finleap.sm.states.WaitState;
+import com.finleap.statemachine.InterpreterContext;
+import com.finleap.statemachine.states.WaitState;
 import org.junit.Before;
 import org.junit.Test;
 

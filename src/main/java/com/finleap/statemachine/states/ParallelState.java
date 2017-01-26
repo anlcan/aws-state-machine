@@ -1,10 +1,10 @@
-package com.finleap.sm.states;
+package com.finleap.statemachine.states;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.finleap.Interpreter;
 import com.finleap.runtime.StateExecutor;
-import com.finleap.sm.StateMachine;
-import com.finleap.sm.StateMachineContext;
+import com.finleap.statemachine.StateMachine;
+import com.finleap.statemachine.StateMachineContext;
 
 import java.util.List;
 import java.util.stream.Collectors;

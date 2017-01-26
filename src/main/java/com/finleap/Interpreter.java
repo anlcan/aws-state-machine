@@ -1,29 +1,31 @@
 package com.finleap;
 
-import com.finleap.runtime.PrintExectutor;
+import com.finleap.runtime.PrintExecutor;
 import com.finleap.runtime.StateExecutor;
 import com.finleap.runtime.TaskExecutorFactory;
-import com.finleap.sm.InterpreterContext;
-import com.finleap.sm.StateExecutionException;
-import com.finleap.sm.StateMachine;
-import com.finleap.sm.StateMachineContext;
-import com.finleap.sm.states.Executable;
-import com.finleap.sm.states.State;
+import com.finleap.statemachine.InterpreterContext;
+import com.finleap.statemachine.error.StateExecutionException;
+import com.finleap.statemachine.StateMachine;
+import com.finleap.statemachine.StateMachineContext;
+import com.finleap.statemachine.states.Executable;
+import com.finleap.statemachine.states.State;
 
 /**
  * Created by anlcan on 26/01/2017.
  *
- * Interpreter that runs a given state machine against an input
+ * Interpreter that runs a given state machine against a context.
+ * execute each step, update the state and finish the state machine.
  */
-public class Interpreter {
+public class Interpreter{
 
     /**
-     *
+     * state machine
+     * one interpreter with a statemachine, can run multiple input
      */
     private final StateMachine stateMachine;
 
     /**
-     *
+     * an executor
      */
     public TaskExecutorFactory factory;
 
@@ -42,7 +44,7 @@ public class Interpreter {
         internal.factory = new TaskExecutorFactory() {
             @Override
             public StateExecutor executor() {
-                return new PrintExectutor();
+                return new PrintExecutor();
             }
         };
         return internal.execute(inputJson);
@@ -73,7 +75,7 @@ public class Interpreter {
      * @return
      */
     private void step(State state, StateMachineContext context){
-
+        context.setCurrentStateName(state.name);
         state.run(context);
         if (state instanceof Executable) {
             ((Executable) state).execute(context, factory.executor());

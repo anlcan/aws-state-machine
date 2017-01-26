@@ -2,7 +2,7 @@ package com.finleap;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.finleap.sm.StateMachine;
+import com.finleap.statemachine.StateMachine;
 
 import java.io.File;
 import java.io.IOException;

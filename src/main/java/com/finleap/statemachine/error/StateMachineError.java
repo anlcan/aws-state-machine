@@ -1,4 +1,4 @@
-package com.finleap.sm;
+package com.finleap.statemachine.error;
 
 /**
  * Created by anlcan on 26/01/2017.

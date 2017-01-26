@@ -1,9 +1,9 @@
-package com.finleap.sm;
+package com.finleap.statemachine;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.finleap.sm.fields.States;
-import com.finleap.sm.states.State;
+import com.finleap.statemachine.fields.States;
+import com.finleap.statemachine.states.State;
 
 /**
  * Created by anlcan on 20/01/2017.

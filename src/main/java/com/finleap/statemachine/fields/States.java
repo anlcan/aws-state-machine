@@ -1,9 +1,9 @@
-package com.finleap.sm.fields;
+package com.finleap.statemachine.fields;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.finleap.deser.StatesDeserializer;
-import com.finleap.sm.StateMachine;
-import com.finleap.sm.states.State;
+import com.finleap.statemachine.StateMachine;
+import com.finleap.statemachine.states.State;
 
 import java.util.HashMap;
 import java.util.Map;
