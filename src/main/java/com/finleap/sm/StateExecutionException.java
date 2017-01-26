@@ -9,4 +9,8 @@ public class StateExecutionException extends RuntimeException{
     public StateExecutionException(String cause) {
         super(cause);
     }
+
+    public StateExecutionException(InterruptedException e) {
+        super(e);
+    }
 }

@@ -2,6 +2,8 @@ package com.finleap.sm.states;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.finleap.sm.Context;
+import com.finleap.sm.StateExecutionException;
+import com.jayway.jsonpath.JsonPath;
 
 import java.time.Duration;
 import java.time.ZonedDateTime;
@@ -25,7 +27,7 @@ public class WaitState extends State {
     public String timeStamp = null;
 
     @JsonProperty("SecondsPath")
-    public String secondsPath;
+    public String secondsPath = null;
 
     @JsonProperty("TimestampPath")
     public String timestampPath;
@@ -34,15 +36,39 @@ public class WaitState extends State {
     public void run(Context context) {
         try {
             if (seconds > 0){
-                Thread.sleep(seconds * 1000);
-            }else if ( timeStamp != null) {
-                ZonedDateTime future = ZonedDateTime.parse(timeStamp);
-                ZonedDateTime now = ZonedDateTime.now();
-                long milliseconds = Duration.between(now, future).toMillis();
-                Thread.sleep(milliseconds);
+                sleepSeconds(seconds);
+            }  else if (secondsPath != null){
+                int sec = JsonPath.parse(context.getInput()).read(secondsPath);
+                sleepSeconds(sec);
+            } else if ( timeStamp != null) {
+                untilItSleeps(this.timeStamp);
+            }else if ( timestampPath!= null) {
+                String aTimeStamp = JsonPath.parse(context.getInput()).read(timestampPath);
+                untilItSleeps(aTimeStamp);
             }
         } catch (InterruptedException e) {
-            e.printStackTrace(); // FIXME
+             throw new StateExecutionException(e);
         }
+    }
+
+    /**
+     *
+     * @param sec
+     * @throws InterruptedException
+     */
+    private void sleepSeconds(int sec) throws InterruptedException {
+        Thread.sleep(sec * 1000);
+    }
+
+    /**
+     *
+     * @param aTimeStamp
+     * @throws InterruptedException
+     */
+    private void untilItSleeps(String aTimeStamp) throws InterruptedException {
+        ZonedDateTime future = ZonedDateTime.parse(aTimeStamp);
+        ZonedDateTime now = ZonedDateTime.now();
+        long milliseconds = Duration.between(now, future).toMillis();
+        Thread.sleep(milliseconds);
     }
 }

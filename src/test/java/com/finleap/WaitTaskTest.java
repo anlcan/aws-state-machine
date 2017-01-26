@@ -42,7 +42,35 @@ public class WaitTaskTest {
         long start = System.currentTimeMillis();
         state.run(new Context(""));
         long end = System.currentTimeMillis();
-        assertTrue((end-start > secondToWait * 1000));
+        long execution = end-start + 100; //100 is the execution diff
+        assertTrue((execution > secondToWait * 1000));
+
+    }
+
+
+    @Test
+    public void secondsPath() throws Exception {
+        String input ="{seconds:2}";
+        state.secondsPath = "$.seconds";
+        long start = System.currentTimeMillis();
+        state.run(new Context(input));
+        long end = System.currentTimeMillis();
+        assertTrue((end-start > 2 * 1000));
+
+    }
+
+    @Test
+    public void timestampPath() throws Exception {
+        int secondToWait = 2;
+        ZonedDateTime time =  ZonedDateTime.now().plusSeconds(secondToWait);
+        String timestamp = time.format(DateTimeFormatter.ISO_INSTANT);
+        String input = "{timestamp:" +  timestamp +"}";
+        state.timestampPath = "$.timestamp";
+        long start = System.currentTimeMillis();
+        state.run(new Context(input));
+        long end = System.currentTimeMillis();
+        long execution = end-start + 100; //100 is the execution diff
+        assertTrue((execution > secondToWait * 1000));
 
     }
 }
