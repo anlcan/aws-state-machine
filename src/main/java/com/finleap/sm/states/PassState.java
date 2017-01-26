@@ -1,5 +1,6 @@
 package com.finleap.sm.states;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.finleap.sm.Context;
 
 /**
@@ -8,6 +9,13 @@ import com.finleap.sm.Context;
  * http://docs.aws.amazon.com/step-functions/latest/dg/awl-ref-states-pass.html
  */
 public class PassState extends State {
+
+    /**
+     * Treated as the output of a virtual task to be passed on to the next state,
+     * and filtered as prescribed by the ResultPath field (if present). [Optional]
+     */
+    @JsonProperty("Result")
+    public String result;
 
     public PassState() {
         this.type = StateType.PASS;
