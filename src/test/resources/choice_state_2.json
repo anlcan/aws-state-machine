@@ -31,7 +31,7 @@
     "Public": {
       "Type": "Task",
       "Resource": "arn:aws:lambda:us-east-1:123456789012:function:Foo",
-      "Next": "FinalState"
+      "Next": "FinalErrorState"
     },
     "ValueInTwenties": {
       "Type": "Task",
@@ -44,6 +44,11 @@
     },
     "FinalState": {
       "Type": "Succeed"
+    },
+    "FinalErrorState": {
+      "Type": "Fail",
+      "Cause": "Expecting public ",
+      "Error": "ErrorA"
     }
   }
 }
