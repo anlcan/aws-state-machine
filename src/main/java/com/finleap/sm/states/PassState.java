@@ -23,6 +23,8 @@ public class PassState extends State {
 
     @Override
     public void run(Context context) {
+        // parse input
+        // add result
 
     }
 }
