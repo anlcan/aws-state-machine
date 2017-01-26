@@ -1,13 +1,10 @@
 package com.finleap.sm.fields;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.finleap.deser.ChoiceDeserializer;
 import com.finleap.sm.Context;
 import com.jayway.jsonpath.JsonPath;
-
-import java.util.List;
 
 /**
  * Created by anlcan on 20/01/2017.
@@ -40,18 +37,15 @@ public class ChoiceRule {
 
     private Object value;
 
-    // HERE BE DRAGONS
-    public List<ChoiceRule> multiRuleValue;
 
-
-    @JsonCreator
-    public ChoiceRule(@JsonProperty("Next")String nextStateName) {
-        this.nextStateName = nextStateName;
+    public ChoiceRule() {
     }
 
     public boolean evaluate(Context context){
-        Object param = JsonPath.parse(context.getInput()).read(variable);
-        return option.eval(value, param);
+        Object param = null;
+        if ( variable != null)
+            param = JsonPath.parse(context.getInput()).read(variable);
+        return option.eval(value, param, context);
     }
 
     public void setOption(ChoiceOperator option, Object value) {

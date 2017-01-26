@@ -3,7 +3,6 @@ package com.finleap.sm;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.finleap.sm.fields.States;
-import com.finleap.sm.states.State;
 
 /**
  * Created by anlcan on 20/01/2017.
@@ -14,7 +13,7 @@ public final class StateMachine {
     private   String comment;
 
     @JsonProperty("StartAt")
-    private String startAt;
+    public String startAt;
 
     @JsonProperty("Version")
     private String version = "1.0";
@@ -32,23 +31,5 @@ public final class StateMachine {
         return comment;
     }
 
-    public String run(String inputJson){
-        Context context = new Context(inputJson);
 
-        State state = states.getState(startAt);
-
-        do {
-            state.run(context);
-            if ( state.end)
-                break;
-            String nextStateName = state.nextStateName;
-            state = states.getState(nextStateName);
-            if (state == null) {
-                throw new StateExecutionException("State not found: " + nextStateName);
-            }
-
-        } while (true);
-
-        return context.getOutput();
-    }
 }

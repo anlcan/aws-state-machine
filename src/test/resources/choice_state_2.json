@@ -1,0 +1,51 @@
+{
+  "Comment": "An Amazon States Language example using a Choice state.",
+  "StartAt": "ChoiceStateX",
+  "States": {
+    "ChoiceStateX": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Not": {
+            "Variable": "$.type",
+            "StringEquals": "Private"
+          },
+          "Next": "Public"
+        },
+        {
+          "And": [
+            {
+              "Variable": "$.value",
+              "NumericGreaterThanEquals": 20
+            },
+            {
+              "Variable": "$.value",
+              "NumericLessThan": 30
+            }
+          ],
+          "Next": "ValueInTwenties"
+        }
+      ],
+      "Default": "DefaultState"
+    },
+    "Public": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:us-east-1:123456789012:function:Foo",
+      "Next": "FinalState"
+    },
+    "ValueInTwenties": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:us-east-1:123456789012:function:Bar",
+      "Next": "FinalState"
+    },
+    "DefaultState": {
+      "Type": "Fail",
+      "Cause": "No Matches!"
+    },
+    "FinalState": {
+      "Type": "Succeed",
+      "Cause": "No Matches!",
+      "End": true
+    }
+  }
+}

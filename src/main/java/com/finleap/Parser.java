@@ -1,4 +1,4 @@
-package com.finleap.deser;
+package com.finleap;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -12,7 +12,7 @@ import java.io.IOException;
  */
 public class Parser {
 
-    private static final ObjectMapper MAPPER =new ObjectMapper();
+    private static final ObjectMapper MAPPER = new ObjectMapper();
     static {
 
         MAPPER.configure(DeserializationFeature.FAIL_ON_IGNORED_PROPERTIES, false);

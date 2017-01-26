@@ -1,6 +1,5 @@
 package com.finleap;
 
-import com.finleap.deser.Parser;
 import com.finleap.sm.StateMachine;
 import org.junit.Test;
 
@@ -14,18 +13,32 @@ public class ParserTest {
 
     @Test
     public void parseHello() throws IOException {
-        File content =  new File(getClass().getClassLoader().getResource("hello.json").getFile());
+        File content =  new File(getClass().getClassLoader().getResource("hello_world.json").getFile());
         StateMachine stateMachine = Parser.parseFile(content);
         System.out.println( stateMachine.getComment());
-        stateMachine.run("{foo:2}");
+        Interpreter.run(stateMachine,"{foo:2}");
     }
 
     @Test
-    public void parse() throws IOException {
+    public void parseChoice1() throws IOException {
         File content =  new File(getClass().getClassLoader().getResource("choice_state_1.json").getFile());
         StateMachine stateMachine = Parser.parseFile(content);
         System.out.println( stateMachine.getComment());
 
-        stateMachine.run("{foo:2}");
+        Interpreter.run(stateMachine,"{foo:2}");
+
+    }
+
+    @Test
+    public void parseChoice2() throws IOException {
+        File content =  new File(getClass().getClassLoader().getResource("choice_state_2.json").getFile());
+        StateMachine stateMachine = Parser.parseFile(content);
+        System.out.println( stateMachine.getComment());
+
+        Interpreter.run(stateMachine,"{\n" +
+                "  \"type\": \"Private\",\n" +
+                "  \"value\": 22\n" +
+                "}");
+
     }
 }
