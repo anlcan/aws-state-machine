@@ -21,5 +21,4 @@ public abstract class ErrorHandlingState extends State {
 
     @JsonProperty("Catch")
     public List<Catcher> catchers;
-
 }
