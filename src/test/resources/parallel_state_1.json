@@ -26,10 +26,29 @@
           }
         }
       ],
+      "Retry": [
+        {
+          "ErrorEquals": ["States.Timeout"],
+          "IntervalSeconds": 1,
+          "MaxAttempts": 2,
+          "BackoffRate": 2.0
+        }
+      ],
+      "Catch": [
+        {
+          "ErrorEquals" : [],
+          "Next" : "HandleError"
+        }
+      ],
       "Next": "FinalState"
     },
     "FinalState": {
       "Type": "Succeed"
+    },
+
+    "HandleError":{
+        "Type": "Fail",
+        "Cause": "ParalleError"
     }
   }
 }

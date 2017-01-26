@@ -7,7 +7,7 @@ import com.finleap.sm.Context;
  *
  * http://docs.aws.amazon.com/step-functions/latest/dg/awl-ref-states-task.html
  */
-public class TaskState extends State {
+public class TaskState extends ErrorHandlingState {
 
     public TaskState(){
         this.type = StateType.TASK;
