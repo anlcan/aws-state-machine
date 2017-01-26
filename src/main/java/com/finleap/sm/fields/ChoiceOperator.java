@@ -1,7 +1,6 @@
 package com.finleap.sm.fields;
 
 import java.math.BigDecimal;
-import java.util.List;
 import java.util.Objects;
 
 /**
@@ -13,9 +12,8 @@ public enum ChoiceOperator {
 
     StringEquals(Type.STRING) {
         @Override
-        protected boolean eval(Object context) {
-            String inputParam = (String) context;
-            return stringValue.compareTo(inputParam) == 0;
+        protected boolean eval(Object one, Object two) {
+            return paramConvertString(one).compareTo(paramConvertString(two)) == 0;
         }
     },
 
@@ -29,8 +27,8 @@ public enum ChoiceOperator {
 
     NumericEquals(Type.NUMERIC) {
         @Override
-        protected boolean eval(Object context) {
-            return numericValue.compareTo(paramConvertNumeric(context)) == 0;
+        protected boolean eval(Object one, Object two) {
+            return paramConvertNumeric(one).compareTo(paramConvertNumeric(two)) == 0;
         }
     },
 
@@ -60,7 +58,7 @@ public enum ChoiceOperator {
 
     Not(Type.MULTI) {
         @Override
-        protected boolean eval(Object context) {
+        protected boolean eval(Object one, Object two) {
             return false;
         }
     };
@@ -82,23 +80,20 @@ public enum ChoiceOperator {
         TIMESTAMP,
         MULTI;
     }
-
-    public String stringValue;
-
-    public BigDecimal numericValue;
-
-    public Boolean booleanValue;
-
-    // HERE BE DRAGONS
-    public List<ChoiceRule> multiRuleValue;
-
-    protected abstract boolean eval(Object context);
+    
+    protected abstract boolean eval(Object one, Object two);
 
     /** Util methods*/
-    public BigDecimal paramConvertNumeric(Object param) {
+    protected String paramConvertString(Object param){
+        Objects.requireNonNull(param);
+        return (String)param;
+    }
+    protected BigDecimal paramConvertNumeric(Object param) {
         BigDecimal result;
         Objects.requireNonNull(param);
-        if (param instanceof Double)
+        if (param instanceof BigDecimal)
+            result = (BigDecimal)param;
+        else if (param instanceof Double)
             result = BigDecimal.valueOf((Double)param);
         else if (param instanceof Integer)
             result =  BigDecimal.valueOf((Integer)param);

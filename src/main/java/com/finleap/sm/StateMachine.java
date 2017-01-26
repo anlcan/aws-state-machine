@@ -19,7 +19,6 @@ public final class StateMachine {
     @JsonProperty("Version")
     private String version = "1.0";
 
-    //public final List<State> states = new ArrayList<>();
     @JsonProperty("States")
     public States states;
 
@@ -38,17 +37,17 @@ public final class StateMachine {
 
         State state = states.getState(startAt);
 
-        while (!state.end) {
+        do {
             state.run(context);
-            State nextState = states.getState(state.nextStateName);
-            if (nextState == null) {
-                System.out.println(state.nextStateName);
-                throw new StateExecutionException("broken state");
-            } else {
-                state = nextState;
+            if ( state.end)
+                break;
+            String nextStateName = state.nextStateName;
+            state = states.getState(nextStateName);
+            if (state == null) {
+                throw new StateExecutionException("State not found: " + nextStateName);
             }
 
-        }
+        } while (true);
 
         return context.getOutput();
     }

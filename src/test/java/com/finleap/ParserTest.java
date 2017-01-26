@@ -22,7 +22,7 @@ public class ParserTest {
 
     @Test
     public void parse() throws IOException {
-        File content =  new File(getClass().getClassLoader().getResource("sm1.json").getFile());
+        File content =  new File(getClass().getClassLoader().getResource("choice_state_1.json").getFile());
         StateMachine stateMachine = Parser.parseFile(content);
         System.out.println( stateMachine.getComment());
 

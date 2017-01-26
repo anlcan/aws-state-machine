@@ -7,6 +7,8 @@ import com.finleap.deser.ChoiceDeserializer;
 import com.finleap.sm.Context;
 import com.jayway.jsonpath.JsonPath;
 
+import java.util.List;
+
 /**
  * Created by anlcan on 20/01/2017.
  *
@@ -36,6 +38,12 @@ public class ChoiceRule {
     @JsonProperty("Next")
     public String nextStateName;
 
+    private Object value;
+
+    // HERE BE DRAGONS
+    public List<ChoiceRule> multiRuleValue;
+
+
     @JsonCreator
     public ChoiceRule(@JsonProperty("Next")String nextStateName) {
         this.nextStateName = nextStateName;
@@ -43,10 +51,15 @@ public class ChoiceRule {
 
     public boolean evaluate(Context context){
         Object param = JsonPath.parse(context.getInput()).read(variable);
-        return option.eval(param);
+        return option.eval(value, param);
     }
 
-    public void setOption(ChoiceOperator option) {
+    public void setOption(ChoiceOperator option, Object value) {
         this.option = option;
+        this.value = value;
+    }
+
+    public String getNextStateName() {
+        return nextStateName;
     }
 }

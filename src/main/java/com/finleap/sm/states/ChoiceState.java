@@ -31,13 +31,12 @@ public class ChoiceState extends State{
         nextStateName = evaluateChoices(context);
     }
 
-    protected String evaluateChoices(Context context){
-        ChoiceRule defaultChoiceRule = new ChoiceRule(defaultStateName);
-
+    private String evaluateChoices(Context context){
         return choices.stream()
                 .filter(choice -> choice.evaluate(context))
+                .map(ChoiceRule::getNextStateName)
                 .findFirst()
-                .orElse(defaultChoiceRule).nextStateName ;
+                .orElse(defaultStateName) ;
 
     }
 

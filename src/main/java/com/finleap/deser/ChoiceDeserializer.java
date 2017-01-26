@@ -8,7 +8,6 @@ import com.finleap.sm.fields.ChoiceOperator;
 import com.finleap.sm.fields.ChoiceRule;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -38,22 +37,23 @@ public final class ChoiceDeserializer extends JsonDeserializer{
                 .get();
 
         ChoiceOperator tank = ChoiceOperator.valueOf(op.getKey());
+        choiceRule.setOption(tank, op.getValue().textValue());
         switch (tank.getType()){
 
             case BOOLEAN:
                 break;
             case STRING:
-                tank.stringValue = op.getValue().asText();
+                choiceRule.setOption(tank, op.getValue().asText());
                 break;
             case NUMERIC:
-                tank.numericValue = BigDecimal.valueOf(op.getValue().asDouble());
+                choiceRule.setOption(tank, op.getValue().decimalValue());
                 break;
             case TIMESTAMP:
                 break;
             case MULTI:
                 break;
         }
-        choiceRule.setOption(tank);
+
 
         return choiceRule;
     }

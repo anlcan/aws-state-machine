@@ -4,7 +4,7 @@
   "States": {
     "FirstState": {
       "Type": "Task",
-      "Resource": "arn:aws:lambda:us-east-1:123456789012:function:FUNCTION_NAME",
+      "Resource": "arn:aws:lambda:us-east-1:123456789012:function:FIRST",
       "Next": "ChoiceState"
     },
     "ChoiceState": {
@@ -43,7 +43,7 @@
 
     "NextState": {
       "Type": "Task",
-      "Resource": "arn:aws:lambda:us-east-1:123456789012:function:FUNCTION_NAME",
+      "Resource": "arn:aws:lambda:us-east-1:123456789012:function:NEXT",
       "End": true
     }
   }
