@@ -63,7 +63,9 @@ public abstract class State {
     @JsonProperty("ResultPath")
     public String resultPath;
 
-
+    /**
+     *
+     */
     public String name;
 
 
@@ -72,8 +74,8 @@ public abstract class State {
         this.type = type;
     }
 
-     State(){
-        System.out.println();
+    State(){
+
     }
 
 
