@@ -57,6 +57,13 @@ public abstract class State {
     @JsonProperty("OutputPath")
     public String outputPath;
 
+    /**
+     *
+     */
+    @JsonProperty("ResultPath")
+    public String resultPath;
+
+
     public String name;
 
 
