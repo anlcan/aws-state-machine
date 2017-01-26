@@ -15,8 +15,8 @@ import static org.junit.Assert.assertTrue;
  */
 public class WaitTaskTest {
 
-    WaitState state;
-
+    private WaitState state;
+    private static final int WAIT_SECONDS = 2;
     @Before
     public void setup() {
         state = new WaitState();
@@ -25,7 +25,7 @@ public class WaitTaskTest {
     @Test
     public void secondsTest() throws Exception {
 
-        state.seconds = 3;
+        state.seconds = 2;
         long start = System.currentTimeMillis();
         state.run(new Context(""));
         long end = System.currentTimeMillis();
@@ -34,16 +34,16 @@ public class WaitTaskTest {
     }
 
 
-    @Test
+    @Test()
     public void timeStampTest() throws Exception {
-        int secondToWait = 2;
-        ZonedDateTime time =  ZonedDateTime.now().plusSeconds(secondToWait);
+
+        ZonedDateTime time =  ZonedDateTime.now().plusSeconds(WAIT_SECONDS);
         state.timeStamp = time.format(DateTimeFormatter.ISO_INSTANT);
         long start = System.currentTimeMillis();
         state.run(new Context(""));
         long end = System.currentTimeMillis();
         long execution = end-start + 100; //100 is the execution diff
-        assertTrue((execution > secondToWait * 1000));
+        assertTrue((execution > WAIT_SECONDS * 1000));
 
     }
 
@@ -61,8 +61,7 @@ public class WaitTaskTest {
 
     @Test
     public void timestampPath() throws Exception {
-        int secondToWait = 2;
-        ZonedDateTime time =  ZonedDateTime.now().plusSeconds(secondToWait);
+        ZonedDateTime time =  ZonedDateTime.now().plusSeconds(WAIT_SECONDS);
         String timestamp = time.format(DateTimeFormatter.ISO_INSTANT);
         String input = "{timestamp:" +  timestamp +"}";
         state.timestampPath = "$.timestamp";
@@ -70,7 +69,7 @@ public class WaitTaskTest {
         state.run(new Context(input));
         long end = System.currentTimeMillis();
         long execution = end-start + 100; //100 is the execution diff
-        assertTrue((execution > secondToWait * 1000));
+        assertTrue((execution > WAIT_SECONDS * 1000));
 
     }
 }
