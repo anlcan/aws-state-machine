@@ -15,7 +15,7 @@ public class TaskState extends State {
 
     @Override
     public void run(Context context) {
-        System.out.println("running  " + resource);
+
     }
 
 }

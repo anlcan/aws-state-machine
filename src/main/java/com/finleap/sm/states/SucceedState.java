@@ -11,6 +11,7 @@ public class SucceedState extends State {
 
     public SucceedState() {
         this.type = StateType.SUCCEED;
+        this.end = true;
     }
 
     @Override

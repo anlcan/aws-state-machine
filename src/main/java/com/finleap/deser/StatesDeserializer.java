@@ -6,10 +6,7 @@ import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.finleap.sm.fields.States;
-import com.finleap.sm.states.ChoiceState;
-import com.finleap.sm.states.FailState;
-import com.finleap.sm.states.State;
-import com.finleap.sm.states.TaskState;
+import com.finleap.sm.states.*;
 
 import java.io.IOException;
 import java.util.Map;
@@ -39,6 +36,9 @@ public final class StatesDeserializer extends JsonDeserializer<States> {
                             break;
                         case "Fail" :
                             stateClass = FailState.class;
+                            break;
+                        case "Succeed":
+                            stateClass = SucceedState.class;
                             break;
                         case "Task":
                         default:

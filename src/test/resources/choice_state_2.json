@@ -43,9 +43,7 @@
       "Cause": "No Matches!"
     },
     "FinalState": {
-      "Type": "Succeed",
-      "Cause": "No Matches!",
-      "End": true
+      "Type": "Succeed"
     }
   }
 }

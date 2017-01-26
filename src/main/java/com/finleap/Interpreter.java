@@ -18,6 +18,7 @@ public class Interpreter {
         State state = stateMachine.states.getState(stateMachine.startAt);
 
         do {
+            System.out.println("running  " + state.toString());
             state.run(context);
             if ( state.end)
                 break;
