@@ -1,0 +1,35 @@
+{
+  "Comment": "A simple Parallel State Example",
+  "StartAt": "FunWithMath",
+  "States": {
+    "FunWithMath": {
+      "Type": "Parallel",
+      "Branches": [
+        {
+          "StartAt": "Add",
+          "States": {
+            "Add": {
+              "Type": "Task",
+              "Resource": "arn:aws:swf:::task:Add",
+              "End": true
+            }
+          }
+        },
+        {
+          "StartAt": "Subtract",
+          "States": {
+            "Subtract": {
+              "Type": "Task",
+              "Resource": "arn:aws:swf:::task:Subtract",
+              "End": true
+            }
+          }
+        }
+      ],
+      "Next": "FinalState"
+    },
+    "FinalState": {
+      "Type": "Succeed"
+    }
+  }
+}

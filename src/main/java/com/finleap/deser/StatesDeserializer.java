@@ -40,6 +40,9 @@ public final class StatesDeserializer extends JsonDeserializer<States> {
                         case "Succeed":
                             stateClass = SucceedState.class;
                             break;
+                        case "Parallel":
+                            stateClass = ParallelState.class;
+                            break;
                         case "Task":
                         default:
                             stateClass = TaskState.class;

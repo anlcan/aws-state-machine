@@ -41,4 +41,14 @@ public class ParserTest {
                 "}");
 
     }
+
+    @Test
+    public void parseParallel() throws IOException {
+        File content =  new File(getClass().getClassLoader().getResource("parallel_state_1.json").getFile());
+        StateMachine stateMachine = Parser.parseFile(content);
+        System.out.println( stateMachine.getComment());
+
+        Interpreter.run(stateMachine, "[3, 2]");
+
+    }
 }
