@@ -1,8 +1,8 @@
 package com.finleap.sm.states;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.finleap.sm.Context;
 import com.finleap.sm.StateExecutionException;
+import com.finleap.sm.StateMachineContext;
 import com.jayway.jsonpath.JsonPath;
 
 import java.time.Duration;
@@ -33,17 +33,17 @@ public class WaitState extends State {
     public String timestampPath;
 
     @Override
-    public void run(Context context) {
+    public void run(StateMachineContext context) {
         try {
             if (seconds > 0){
                 sleepSeconds(seconds);
             }  else if (secondsPath != null){
-                int sec = JsonPath.parse(context.getInput()).read(secondsPath);
+                int sec = JsonPath.parse(context.getOutput()).read(secondsPath);
                 sleepSeconds(sec);
             } else if ( timeStamp != null) {
                 untilItSleeps(this.timeStamp);
             }else if ( timestampPath!= null) {
-                String aTimeStamp = JsonPath.parse(context.getInput()).read(timestampPath);
+                String aTimeStamp = JsonPath.parse(context.getOutput()).read(timestampPath);
                 untilItSleeps(aTimeStamp);
             }
         } catch (InterruptedException e) {

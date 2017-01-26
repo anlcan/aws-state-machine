@@ -31,7 +31,4 @@ public class Parser {
         return MAPPER.readValue(file, StateMachine.class);
 
     }
-
-
-
 }

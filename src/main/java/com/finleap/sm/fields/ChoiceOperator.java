@@ -1,6 +1,6 @@
 package com.finleap.sm.fields;
 
-import com.finleap.sm.Context;
+import com.finleap.sm.StateMachineContext;
 
 import java.math.BigDecimal;
 import java.util.Objects;
@@ -14,7 +14,7 @@ public enum ChoiceOperator {
 
     StringEquals(Type.STRING) {
         @Override
-        protected boolean eval(Object one, Object two, Context context) {
+        protected boolean eval(Object one, Object two, StateMachineContext context) {
             return paramConvertString(one).compareTo(paramConvertString(two)) == 0;
         }
     },
@@ -29,14 +29,14 @@ public enum ChoiceOperator {
 
     NumericEquals(Type.NUMERIC) {
         @Override
-        protected boolean eval(Object one, Object two, Context context) {
+        protected boolean eval(Object one, Object two, StateMachineContext context) {
             return paramConvertNumeric(one).compareTo(paramConvertNumeric(two)) == 0;
         }
     },
 
     NumericLessThan(Type.NUMERIC){
         @Override
-        protected boolean eval(Object one, Object two, Context context) {
+        protected boolean eval(Object one, Object two, StateMachineContext context) {
             return paramConvertNumeric(one).compareTo(paramConvertNumeric(two)) > 0;
         }
     },
@@ -47,7 +47,7 @@ public enum ChoiceOperator {
 //
     NumericGreaterThanEquals(Type.NUMERIC){
     @Override
-    protected boolean eval(Object one, Object two, Context context) {
+    protected boolean eval(Object one, Object two, StateMachineContext context) {
         return paramConvertNumeric(one).compareTo(paramConvertNumeric(two)) <= 0;
     }
 },
@@ -66,7 +66,7 @@ public enum ChoiceOperator {
 
     And(Type.MULTI){
         @Override
-        protected boolean eval(Object one, Object two, Context context) {
+        protected boolean eval(Object one, Object two, StateMachineContext context) {
             //return paramConvertNumeric(one).compareTo(paramConvertNumeric(two)) >= 0;
             return true;
         }
@@ -78,7 +78,7 @@ public enum ChoiceOperator {
      */
     Not(Type.CHOICE) {
         @Override
-        protected boolean eval(Object one, Object two, Context context) {
+        protected boolean eval(Object one, Object two, StateMachineContext context) {
 
             ChoiceRule rule = (ChoiceRule) one;
             return !rule.evaluate(context);
@@ -104,7 +104,7 @@ public enum ChoiceOperator {
         MULTI;
     }
 
-    protected abstract boolean eval(Object one, Object two, Context context);
+    protected abstract boolean eval(Object one, Object two, StateMachineContext context);
 
     /** Util methods*/
     protected String paramConvertString(Object param){

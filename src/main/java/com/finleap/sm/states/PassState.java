@@ -1,7 +1,7 @@
 package com.finleap.sm.states;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.finleap.sm.Context;
+import com.finleap.sm.StateMachineContext;
 
 /**
  * Created by anlcan on 20/01/2017.
@@ -22,7 +22,7 @@ public class PassState extends State {
     }
 
     @Override
-    public void run(Context context) {
+    public void run(StateMachineContext context) {
         // parse input
         // add result
 

@@ -2,8 +2,9 @@ package com.finleap.sm.states;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.finleap.Interpreter;
-import com.finleap.sm.Context;
+import com.finleap.runtime.StateExecutor;
 import com.finleap.sm.StateMachine;
+import com.finleap.sm.StateMachineContext;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,7 +12,7 @@ import java.util.stream.Collectors;
 /**
  * Created by anlcan on 25/01/2017.
  */
-public class ParallelState extends ErrorHandlingState {
+public class ParallelState extends ErrorHandlingState  {
     /**
      * An array of objects that specify state machines to execute in parallel.
      * Each such state machine object must have fields named States and StartAt
@@ -35,10 +36,16 @@ public class ParallelState extends ErrorHandlingState {
      * @param context
      */
     @Override
-    public void run(Context context) {
+    public void run(StateMachineContext context) {
 
+    }
+
+    @Override
+    public String execute(StateMachineContext context, StateExecutor executor) {
         branches.parallelStream()
-                .map(sm -> Interpreter.run(sm, context.getInput()))
+                .map(sm -> Interpreter.run(sm, context.getOutput()))
                 .collect(Collectors.toList());
+
+        return null; //fixme
     }
 }

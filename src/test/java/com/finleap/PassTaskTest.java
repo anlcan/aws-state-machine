@@ -1,6 +1,6 @@
 package com.finleap;
 
-import com.finleap.sm.Context;
+import com.finleap.sm.InterpreterContext;
 import com.finleap.sm.states.PassState;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,9 +21,9 @@ public class PassTaskTest {
     @Test
     public void coords() throws Exception {
         String input = "{georefOf: Home}";
-        Context context = new Context(input);
-        state.run(context);
+        InterpreterContext interpreterContext = new InterpreterContext(input);
+        state.run(interpreterContext);
 
-        context.getInput();
+        interpreterContext.getInput();
     }
 }

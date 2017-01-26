@@ -1,6 +1,6 @@
 package com.finleap;
 
-import com.finleap.sm.Context;
+import com.finleap.sm.InterpreterContext;
 import com.finleap.sm.StateMachineError;
 import com.finleap.sm.states.FailState;
 import org.junit.Rule;
@@ -20,7 +20,7 @@ public class FailTaskTest {
 
         FailState f = new FailState();
         thrown.expect(StateMachineError.class);
-        f.run(new Context("{}"));
+        f.run(new InterpreterContext("{}"));
         // not reached
 
     }

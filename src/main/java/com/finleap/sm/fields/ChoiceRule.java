@@ -3,7 +3,7 @@ package com.finleap.sm.fields;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.finleap.deser.ChoiceDeserializer;
-import com.finleap.sm.Context;
+import com.finleap.sm.StateMachineContext;
 import com.jayway.jsonpath.JsonPath;
 
 /**
@@ -41,10 +41,10 @@ public class ChoiceRule {
     public ChoiceRule() {
     }
 
-    public boolean evaluate(Context context){
+    public boolean evaluate(StateMachineContext context){
         Object param = null;
         if ( variable != null)
-            param = JsonPath.parse(context.getInput()).read(variable);
+            param = JsonPath.parse(context.getOutput()).read(variable);
         return option.eval(value, param, context);
     }
 

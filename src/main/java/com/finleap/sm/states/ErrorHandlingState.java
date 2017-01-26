@@ -11,7 +11,7 @@ import java.util.List;
  *
  * http://docs.aws.amazon.com/step-functions/latest/dg/concepts-error-handling.html
  */
-public abstract class ErrorHandlingState extends State {
+public abstract class ErrorHandlingState extends State implements Executable {
     /**
      * an array of objects, called Retriers.
      * An individual Retrier represents a certain number of retries, usually at increasing time intervals.

@@ -3,6 +3,7 @@ package com.finleap.sm;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.finleap.sm.fields.States;
+import com.finleap.sm.states.State;
 
 /**
  * Created by anlcan on 20/01/2017.
@@ -31,5 +32,7 @@ public final class StateMachine {
         return comment;
     }
 
-
+    public State getState(String stateName){
+        return states.getState(stateName);
+    }
 }

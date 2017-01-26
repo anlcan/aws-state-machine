@@ -1,7 +1,7 @@
 package com.finleap.sm.states;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.finleap.sm.Context;
+import com.finleap.sm.StateMachineContext;
 import com.finleap.sm.fields.ChoiceRule;
 
 import java.util.List;
@@ -27,11 +27,11 @@ public class ChoiceState extends State{
      * evaluates {@link #choices} and sets {@link #nextStateName}
      */
     @Override
-    public void run(Context context) {
+    public void run(StateMachineContext context) {
         nextStateName = evaluateChoices(context);
     }
 
-    private String evaluateChoices(Context context){
+    private String evaluateChoices(StateMachineContext context){
         return choices.stream()
                 .filter(choice -> choice.evaluate(context))
                 .map(ChoiceRule::getNextStateName)

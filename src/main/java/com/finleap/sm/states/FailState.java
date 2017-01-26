@@ -1,7 +1,7 @@
 package com.finleap.sm.states;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.finleap.sm.Context;
+import com.finleap.sm.StateMachineContext;
 import com.finleap.sm.StateMachineError;
 
 /**
@@ -33,7 +33,7 @@ public class FailState extends State {
     }
 
     @Override
-    public void run(Context context) {
+    public void run(StateMachineContext context) {
         if (error != null)
             throw new StateMachineError(cause, error);
         else

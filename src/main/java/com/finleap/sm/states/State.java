@@ -2,14 +2,14 @@ package com.finleap.sm.states;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.finleap.sm.Context;
+import com.finleap.sm.StateMachineContext;
 
 /**
  * Created by anlcan on 20/01/2017.
  * http://docs.aws.amazon.com/step-functions/latest/dg/awl-ref-states.html#awl-ref-common-fields
  *
  */
-public abstract class State {
+public abstract class State{
 
     /**
      * The state's type. Can be any of the values listed in State Types. [Required]
@@ -78,11 +78,8 @@ public abstract class State {
 
     }
 
+    public abstract void run(StateMachineContext context);
 
-    /**
-     *
-     */
-    public abstract void run(Context context);
 
     public String getNextStateName(){
         return nextStateName;

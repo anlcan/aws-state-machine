@@ -1,6 +1,6 @@
 package com.finleap.sm.states;
 
-import com.finleap.sm.Context;
+import com.finleap.sm.StateMachineContext;
 
 /**
  * Created by anlcan on 25/01/2017.
@@ -15,7 +15,7 @@ public class SucceedState extends State {
     }
 
     @Override
-    public void run(Context context) {
+    public void run(StateMachineContext context) {
 
     }
 

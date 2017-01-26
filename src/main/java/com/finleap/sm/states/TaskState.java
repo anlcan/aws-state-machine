@@ -1,7 +1,8 @@
 package com.finleap.sm.states;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.finleap.sm.Context;
+import com.finleap.runtime.StateExecutor;
+import com.finleap.sm.StateMachineContext;
 
 /**
  * Created by anlcan on 20/01/2017.
@@ -29,9 +30,12 @@ public class TaskState extends ErrorHandlingState {
         this.type = StateType.TASK;
     }
 
-    @Override
-    public void run(Context context) {
-
+    public void run(StateMachineContext context) {
+        //context.executorFactory.executor.execute(this, context);
     }
 
+    @Override
+    public String execute(StateMachineContext context, StateExecutor executor) {
+        return executor.execute(this, context);
+    }
 }

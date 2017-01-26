@@ -1,6 +1,6 @@
 package com.finleap;
 
-import com.finleap.sm.Context;
+import com.finleap.sm.InterpreterContext;
 import com.finleap.sm.states.WaitState;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,7 +27,7 @@ public class WaitTaskTest {
 
         state.seconds = 2;
         long start = System.currentTimeMillis();
-        state.run(new Context(""));
+        state.run(new InterpreterContext(""));
         long end = System.currentTimeMillis();
         assertTrue((end-start > state.seconds * 1000));
 
@@ -40,7 +40,7 @@ public class WaitTaskTest {
         ZonedDateTime time =  ZonedDateTime.now().plusSeconds(WAIT_SECONDS);
         state.timeStamp = time.format(DateTimeFormatter.ISO_INSTANT);
         long start = System.currentTimeMillis();
-        state.run(new Context(""));
+        state.run(new InterpreterContext(""));
         long end = System.currentTimeMillis();
         long execution = end-start + 100; //100 is the execution diff
         assertTrue((execution > WAIT_SECONDS * 1000));
@@ -53,7 +53,7 @@ public class WaitTaskTest {
         String input ="{seconds:2}";
         state.secondsPath = "$.seconds";
         long start = System.currentTimeMillis();
-        state.run(new Context(input));
+        state.run(new InterpreterContext(input));
         long end = System.currentTimeMillis();
         assertTrue((end-start > 2 * 1000));
 
@@ -66,7 +66,7 @@ public class WaitTaskTest {
         String input = "{timestamp:" +  timestamp +"}";
         state.timestampPath = "$.timestamp";
         long start = System.currentTimeMillis();
-        state.run(new Context(input));
+        state.run(new InterpreterContext(input));
         long end = System.currentTimeMillis();
         long execution = end-start + 100; //100 is the execution diff
         assertTrue((execution > WAIT_SECONDS * 1000));
