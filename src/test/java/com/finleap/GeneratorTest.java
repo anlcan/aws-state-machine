@@ -1,6 +1,7 @@
 package com.finleap;
 
 import com.finleap.statemachine.StateMachine;
+import com.finleap.statemachine.states.FailState;
 import com.finleap.statemachine.states.TaskState;
 import org.junit.Test;
 
@@ -26,10 +27,16 @@ public class GeneratorTest {
         ts2.resource = "arn::lambda::GoodbyeWorld";
         ts2.end = true;
 
+        FailState fs = new FailState();
+        fs.name ="FailState";
+        fs.cause = "Syntax Error";
+        fs.error = "States.ALL";
+
         StateMachine sm = new StateMachine(ts1.name, "Generation test");
 
         sm.states.addState(ts1);
         sm.states.addState(ts2);
+        sm.states.addState(fs);
         System.out.println(gen.generate(sm));
     }
 }
