@@ -2,6 +2,7 @@ package com.finleap;
 
 import com.finleap.statemachine.StateMachine;
 import com.finleap.statemachine.states.FailState;
+import com.finleap.statemachine.states.PassState;
 import com.finleap.statemachine.states.TaskState;
 import org.junit.Test;
 
@@ -32,11 +33,19 @@ public class GeneratorTest {
         fs.cause = "Syntax Error";
         fs.error = "States.ALL";
 
+        PassState ps = new PassState();
+        ps.name ="PassState";
+        ps.result = "{'bar':3}";
+        ps.resultPath = "$.coord";
+        ps.nextStateName = "FailState";
+
+        /* */
         StateMachine sm = new StateMachine(ts1.name, "Generation test");
 
         sm.states.addState(ts1);
         sm.states.addState(ts2);
         sm.states.addState(fs);
+        sm.states.addState(ps);
         System.out.println(gen.generate(sm));
     }
 }
