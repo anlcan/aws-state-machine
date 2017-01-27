@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.finleap.statemachine.StateMachineContext;
 import com.finleap.statemachine.fields.ChoiceRule;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,6 +22,7 @@ public class ChoiceState extends State{
 
     public ChoiceState() {
         this.type = StateType.CHOICE;
+        this.choices = new ArrayList<>();
     }
 
     /**
