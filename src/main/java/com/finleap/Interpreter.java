@@ -16,11 +16,11 @@ import com.finleap.statemachine.states.State;
  * Interpreter that runs a given state machine against a context.
  * execute each step, update the state and finish the state machine.
  */
-public class Interpreter{
+public class Interpreter {
 
     /**
      * state machine
-     * one interpreter with a statemachine, can run multiple input
+     * one interpreter with a state machine, can run multiple input
      */
     private final StateMachine stateMachine;
 

@@ -13,7 +13,7 @@ public class Main {
 
     public static void main(String[] params){
         try {
-            File stateMachineFile = new File(Main.class.getClassLoader().getResource(params[0]).getFile());
+            File stateMachineFile = new File(params[0]);
             StateMachine stateMachine = Parser.parseFile(stateMachineFile);
             String input = params[1];
 
