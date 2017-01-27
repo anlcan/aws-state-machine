@@ -1,7 +1,9 @@
 package com.finleap.statemachine.fields;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.finleap.deser.StatesDeserializer;
+import com.finleap.ser.StatesSerializer;
 import com.finleap.statemachine.StateMachine;
 import com.finleap.statemachine.states.State;
 
@@ -14,6 +16,7 @@ import java.util.Map;
  * states of the {@link StateMachine}
  */
 @JsonDeserialize(using = StatesDeserializer.class)
+@JsonSerialize(using = StatesSerializer.class)
 public class States {
 
     private  final Map<String, State> states = new HashMap<>();
@@ -26,4 +29,7 @@ public class States {
         return states.get(name);
     }
 
+    public Map<String, State> getStates() {
+        return new HashMap<>(states);
+    }
 }

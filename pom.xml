@@ -43,7 +43,10 @@
                 <target>1.8</target>
             </configuration>
         </plugin>
-
+        <!--
+        TODO maybe use shade plugin?
+        http://stackoverflow.com/questions/16222748/building-a-fat-jar-using-maven
+        -->
         <!-- Maven Assembly Plugin -->
         <plugin>
             <groupId>org.apache.maven.plugins</groupId>

@@ -23,9 +23,10 @@ public final class StateMachine {
     public States states;
 
     @JsonCreator
-    public StateMachine(@JsonProperty("Comment") String comment,@JsonProperty("StartAt") String startAt){
+    public StateMachine(@JsonProperty("StartAt") String startAt,@JsonProperty("Comment") String comment){
         this.comment = comment;
         this.startAt = startAt;
+        states = new States();
     }
 
     public String getComment() {
