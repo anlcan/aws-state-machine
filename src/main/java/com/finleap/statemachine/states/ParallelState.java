@@ -1,17 +1,21 @@
 package com.finleap.statemachine.states;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.finleap.Interpreter;
 import com.finleap.runtime.StateExecutor;
+import com.finleap.ser.ParallelSerializer;
 import com.finleap.statemachine.StateMachine;
 import com.finleap.statemachine.StateMachineContext;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 /**
  * Created by anlcan on 25/01/2017.
  */
+@JsonSerialize(using = ParallelSerializer.class)
 public class ParallelState extends ErrorHandlingState  {
     /**
      * An array of objects that specify state machines to execute in parallel.
@@ -26,6 +30,7 @@ public class ParallelState extends ErrorHandlingState  {
 
     public ParallelState() {
         this.type = StateType.PARALLEL;
+        this.branches = new ArrayList<>();
     }
 
     /**

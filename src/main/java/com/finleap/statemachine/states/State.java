@@ -85,6 +85,10 @@ public abstract class State{
         return nextStateName;
     }
 
+    public StateType getType() {
+        return type;
+    }
+
     @Override
     public String toString() {
         return "State{" +
